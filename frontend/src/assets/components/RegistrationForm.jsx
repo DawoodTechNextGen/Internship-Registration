@@ -46,7 +46,7 @@ const getFlagEmoji = (countryCode) => {
 
 // API Configuration
 const API_CONFIG = {
-  BASE_URL: "http://localhost:8890/api",
+  BASE_URL: "https://internship.dawoodtechnextgen.org/api",
   ENDPOINTS: {
     TECHNOLOGIES: "/technologies",
     SUBMIT_FORM: "/registration",

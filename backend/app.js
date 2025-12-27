@@ -10,7 +10,14 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(cors());
+// CORS setup
+app.use(
+  cors({
+    origin: "https://dawoodtechnextgen.org", // frontend origin
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 createDbConnection();
 
 app.use(registerRouter);
