@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 // CORS setup
 app.use(
   cors({
-    origin: process.env.Allow_ORIGIN, // frontend origin
+    origin: [process.env.Allow_ORIGIN, "http://localhost:5173/internship-registration"], // frontend origin
   })
 );
 createDbConnection();
