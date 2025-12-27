@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 // CORS setup
 app.use(
   cors({
-    origin: "https://dawoodtechnextgen.org", // frontend origin
+    origin: process.env.Allow_ORIGIN, // frontend origin
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
