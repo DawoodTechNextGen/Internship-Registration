@@ -868,7 +868,6 @@ const RegistrationForm = () => {
         `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.SUBMIT_FORM}`,
         submissionData,
         {
-          timeout: API_CONFIG.TIMEOUT,
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
