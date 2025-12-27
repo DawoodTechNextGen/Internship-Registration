@@ -18,6 +18,9 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+// Preflight handling
+app.options("*", cors());
+
 createDbConnection();
 
 app.use(registerRouter);
