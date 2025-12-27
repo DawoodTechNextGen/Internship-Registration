@@ -19,7 +19,7 @@ app.use(
   })
 );
 // Preflight handling
-app.options("*", cors());
+// app.options("*", cors());
 
 createDbConnection();
 
