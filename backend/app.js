@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(
   cors({
     origin: process.env.Allow_ORIGIN, // frontend origin
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
