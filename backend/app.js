@@ -4,13 +4,12 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const registerRouter = require("./routes/register.route");
 const techRouter = require("./routes/tech.route");
-const customHeaderSet = require("./middleware/customHeader");
 require("dotenv").config();
 
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
-// app.use(customHeaderSet);
+
 // CORS setup
 app.use(
   cors({
@@ -19,8 +18,6 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-// Preflight handling
-// app.options("*", cors());
 
 createDbConnection();
 

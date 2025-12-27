@@ -47,6 +47,8 @@ const getFlagEmoji = (countryCode) => {
 // API Configuration
 const API_CONFIG = {
   BASE_URL: "https://internship.dawoodtechnextgen.org/api",
+  // BASE_URL: "http://localhost:8890/api",
+
   ENDPOINTS: {
     TECHNOLOGIES: "/technologies",
     SUBMIT_FORM: "/registration",
@@ -110,8 +112,6 @@ const useTechnologies = () => {
       setLoading(false);
     }
   };
-
- 
 
   useEffect(() => {
     fetchTechnologies();
@@ -552,8 +552,6 @@ const ServerErrorsDisplay = ({ errors }) => {
 const RegistrationForm = () => {
   const { technologies, loading, error, retryFetch } = useTechnologies();
 
-  
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -862,8 +860,6 @@ const RegistrationForm = () => {
         experience_label: selectedExp?.label || "",
       };
 
-     
-
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.SUBMIT_FORM}`,
         submissionData,
@@ -875,8 +871,7 @@ const RegistrationForm = () => {
         }
       );
 
-
-     
+      console.log(response);
 
       // Dismiss loading toast and show success
       toast.dismiss(loadingToast);
