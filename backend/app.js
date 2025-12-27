@@ -10,15 +10,15 @@ require("dotenv").config();
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(customHeaderSet);
+// app.use(customHeaderSet);
 // CORS setup
-// app.use(
-//   cors({
-//     origin: process.env.Allow_ORIGIN, // frontend origin
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//   })
-// );
+app.use(
+  cors({
+    origin: process.env.Allow_ORIGIN, // frontend origin
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 // Preflight handling
 // app.options("*", cors());
 
