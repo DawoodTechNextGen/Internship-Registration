@@ -111,7 +111,7 @@ const useTechnologies = () => {
     }
   };
 
-  console.log(technologies);
+ 
 
   useEffect(() => {
     fetchTechnologies();
@@ -552,7 +552,7 @@ const ServerErrorsDisplay = ({ errors }) => {
 const RegistrationForm = () => {
   const { technologies, loading, error, retryFetch } = useTechnologies();
 
-  console.log("Technologies loaded:", technologies);
+  
 
   const [formData, setFormData] = useState({
     name: "",
@@ -862,7 +862,7 @@ const RegistrationForm = () => {
         experience_label: selectedExp?.label || "",
       };
 
-      console.log("Submitting data:", submissionData);
+     
 
       const response = await axios.post(
         `${API_CONFIG.BASE_URL}${API_CONFIG.ENDPOINTS.SUBMIT_FORM}`,
@@ -876,7 +876,7 @@ const RegistrationForm = () => {
         }
       );
 
-      console.log("Form submitted successfully:", response.data);
+     
 
       // Dismiss loading toast and show success
       toast.dismiss(loadingToast);
