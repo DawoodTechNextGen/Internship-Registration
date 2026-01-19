@@ -124,7 +124,7 @@ const useTechnologies = () => {
   return { technologies, loading, error, retryFetch };
 };
 
-const internshipTypes = ["Internship Only", "Full Training + Internship"];
+const internshipTypes = ["Internship Only", "Supervised Internship"];
 const experienceLevels = [
   { label: "I don't have any Experience", value: 0 },
   { label: "6 Months", value: 1 },
