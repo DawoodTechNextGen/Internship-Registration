@@ -1,7 +1,7 @@
 const { connection } = require("../config/connection");
 
 const getTechs = (req, res) => {
-  const query = "SELECT * FROM `technologies`";
+  const query = "SELECT * FROM `technologies` WHERE `status` = 1;";
 
   connection.query(query, (err, techs) => {
     if (err) return res.json(err);
