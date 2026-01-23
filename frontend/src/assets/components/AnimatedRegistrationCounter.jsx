@@ -1,18 +1,30 @@
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import { io } from "socket.io-client";
-
-const socket = io("https://internship.dawoodtechnextgen.org/"); // your server URL
 
 const AnimatedRegistrationCounter = () => {
   const [display, setDisplay] = useState(0);
   const current = useRef(0);
 
   useEffect(() => {
-    socket.on("registrationCount", ({ total }) => {
-      animateWithShuffle(total);
-    });
+    const fetchCount = async () => {
+      try {
+        const { data } = await axios.get(
+          "https://internship.dawoodtechnextgen.org/api/count-register",
+        );
+        
+        animateWithShuffle(data);
+      } catch (err) {
+        console.error("Count fetch error:", err);
+      }
+    };
 
-    return () => socket.off("registrationCount");
+    // first time fetch
+    fetchCount();
+
+    // poll every 10 seconds
+    const interval = setInterval(fetchCount, 20000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const animateWithShuffle = (target) => {
@@ -60,15 +72,15 @@ const AnimatedRegistrationCounter = () => {
 
   return (
     <div className="text-center mb-8">
-      <p className="text-sm text-slate-600 dark:text-slate-400">🔥 Already</p>
+      {/* <p className="text-sm text-slate-600 dark:text-slate-400">🔥 Already</p> */}
 
-      <div className="text-3xl md:text-4xl font-black text-slate-900 dark:text-white tabular-nums tracking-tight">
-        {display.toLocaleString()}
+      <div className="text-2xl md:text-2xl font-black text-slate-900 dark:text-white tabular-nums tracking-tight">
+        🔥 Already {display.toLocaleString()} Candidates Registered
       </div>
 
-      <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+      {/* <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
         Candidates Registered
-      </p>
+      </p> */}
     </div>
   );
 };

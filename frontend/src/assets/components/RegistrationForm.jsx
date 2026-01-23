@@ -77,7 +77,7 @@ const useTechnologies = () => {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       if (
@@ -96,7 +96,7 @@ const useTechnologies = () => {
         setError("Request timeout. Please check your connection.");
       } else if (err.response) {
         setError(
-          `Server error: ${err.response.status} - ${err.response.statusText}`
+          `Server error: ${err.response.status} - ${err.response.statusText}`,
         );
       } else if (err.request) {
         setError("Cannot connect to server. Please ensure the API is running.");
@@ -105,9 +105,12 @@ const useTechnologies = () => {
       }
 
       if (retry < 2) {
-        setTimeout(() => {
-          fetchTechnologies(retry + 1);
-        }, 1000 * (retry + 1));
+        setTimeout(
+          () => {
+            fetchTechnologies(retry + 1);
+          },
+          1000 * (retry + 1),
+        );
       }
     } finally {
       setLoading(false);
@@ -778,7 +781,7 @@ const RegistrationForm = () => {
             background: "#ef4444",
             color: "white",
           },
-        }
+        },
       );
       return;
     }
@@ -840,11 +843,11 @@ const RegistrationForm = () => {
 
     try {
       const selectedTech = technologies.find(
-        (t) => t.id === formData.technology
+        (t) => t.id === formData.technology,
       );
 
       const selectedExp = experienceLevels.find(
-        (e) => e.value === formData.experience
+        (e) => e.value === formData.experience,
       );
 
       const submissionData = {
@@ -869,7 +872,7 @@ const RegistrationForm = () => {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       console.log(response);
@@ -886,7 +889,7 @@ const RegistrationForm = () => {
             color: "white",
           },
           icon: "🎉",
-        }
+        },
       );
 
       setIsSubmitted(true);
@@ -936,7 +939,7 @@ const RegistrationForm = () => {
                 background: "#ef4444",
                 color: "white",
               },
-            }
+            },
           );
         } else if (status === 400) {
           toast.error(data.message || "Bad request. Please check your input.", {
@@ -976,7 +979,7 @@ const RegistrationForm = () => {
               background: "#ef4444",
               color: "white",
             },
-          }
+          },
         );
       } else {
         toast.error("An error occurred. Please try again.", {
@@ -1102,8 +1105,6 @@ const RegistrationForm = () => {
           <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-slate-900/50 overflow-hidden border border-slate-200 dark:border-slate-700">
             <div className="p-8">
               <ServerErrorsDisplay errors={serverErrors} />
-
-              <AnimatedRegistrationCounter/>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1349,6 +1350,13 @@ const RegistrationForm = () => {
                       </span>
                     )}
                   </button>
+
+                  {/* Security Note */}
+                  <div className="flex items-center justify-center pt-4 border-t border-slate-200 dark:border-slate-700 mt-5">
+                    <div className="relative flex items-center justify-center">
+                      <AnimatedRegistrationCounter />
+                    </div>
+                  </div>
                 </div>
 
                 {/* Security Note */}

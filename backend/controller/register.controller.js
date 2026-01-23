@@ -1,4 +1,3 @@
-const { io } = require("../app");
 const { connection } = require("../config/connection");
 
 const registerIntern = (req, res) => {
@@ -49,29 +48,21 @@ const registerIntern = (req, res) => {
         .json({ message: "Server error. Please try again." });
     }
 
-    const count = await getRegistrationCount();
-
-    io.emit("registrationCount", { total: count });
-
     return res.status(201).json({
       message: "Registration successful",
       id: result.insertId,
-      count,
     });
   });
 };
 
 // count function
-const getRegistrationCount = async () => {
-  // const [rows] = await connection.query("SELECT COUNT(*) as total FROM registrations");
-  // return rows[0].total;
-
+const getRegistrationCount = async (req, res) => {
+  
   const sql = "SELECT COUNT(*) as total FROM registrations";
 
   connection.query(sql, (err, data) => {
     if (err) return err;
-    console.log(data);
-    return data[0].total;
+    return res.json(data[0].total);
   });
 };
 

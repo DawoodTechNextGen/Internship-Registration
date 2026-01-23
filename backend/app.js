@@ -5,9 +5,6 @@ const bodyParser = require("body-parser");
 const registerRouter = require("./routes/register.route");
 const techRouter = require("./routes/tech.route");
 require("dotenv").config();
-const http = require("http");
-const { Server } = require("socket.io");
-const setupSocket = require("./sockets/socket");
 
 const app = express();
 app.use(express.json());
@@ -26,19 +23,6 @@ createDbConnection();
 
 app.use(registerRouter);
 app.use(techRouter);
-
-const server = http.createServer(app);
-
-const io = new Server(server, {
-  cors: "*",
-});
-
-
-module.exports = { server, io };
-
-setupSocket(io)
-
-
 
 app.listen(process.env.PORT, () => {
   console.log(`Server Running on Port: ${process.env.PORT}`);
