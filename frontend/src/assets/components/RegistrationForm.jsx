@@ -20,6 +20,7 @@ import {
   RefreshCw,
   AlertCircle,
 } from "lucide-react";
+import AnimatedRegistrationCounter from "./AnimatedRegistrationCounter";
 
 // All countries data
 const allCountries = [
@@ -1101,6 +1102,8 @@ const RegistrationForm = () => {
           <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-slate-900/50 overflow-hidden border border-slate-200 dark:border-slate-700">
             <div className="p-8">
               <ServerErrorsDisplay errors={serverErrors} />
+
+              <AnimatedRegistrationCounter/>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

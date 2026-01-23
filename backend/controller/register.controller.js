@@ -1,3 +1,4 @@
+const { io } = require("../app");
 const { connection } = require("../config/connection");
 
 const registerIntern = (req, res) => {
@@ -35,7 +36,7 @@ const registerIntern = (req, res) => {
     experience_label || "",
   ];
 
-  connection.query(query, values, (err, result) => {
+  connection.query(query, values, async (err, result) => {
     if (err) {
       console.error("DB insert error:", err);
       if (err.code === "ER_DUP_ENTRY") {
@@ -48,11 +49,30 @@ const registerIntern = (req, res) => {
         .json({ message: "Server error. Please try again." });
     }
 
+    const count = await getRegistrationCount();
+
+    io.emit("registrationCount", { total: count });
+
     return res.status(201).json({
       message: "Registration successful",
       id: result.insertId,
+      count,
     });
   });
 };
 
-module.exports = registerIntern;
+// count function
+const getRegistrationCount = async () => {
+  // const [rows] = await connection.query("SELECT COUNT(*) as total FROM registrations");
+  // return rows[0].total;
+
+  const sql = "SELECT COUNT(*) as total FROM registrations";
+
+  connection.query(sql, (err, data) => {
+    if (err) return err;
+    console.log(data);
+    return data[0].total;
+  });
+};
+
+module.exports = { registerIntern, getRegistrationCount };
