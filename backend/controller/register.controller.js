@@ -9,7 +9,7 @@ const registerIntern = (req, res) => {
     city,
     cnic,
     technology,
-    internship_type,
+    Internship_type,
     experience,
     technology_name,
     experience_label,
@@ -29,7 +29,7 @@ const registerIntern = (req, res) => {
     cnic || null,
     city,
     technology,
-    internship_type || 0,
+    Internship_type,
     experience || 0,
     technology_name || "",
     experience_label || "",
@@ -57,7 +57,6 @@ const registerIntern = (req, res) => {
 
 // count function
 const getRegistrationCount = async (req, res) => {
-  
   const sql = "SELECT COUNT(*) as total FROM registrations";
 
   connection.query(sql, (err, data) => {
