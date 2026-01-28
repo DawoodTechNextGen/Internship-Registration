@@ -1,6 +1,6 @@
 const API_CONFIG = {
-  // BASE_URL: "https://internship.dawoodtechnextgen.org/api",
-  BASE_URL: "http://localhost:8890/api",
+  BASE_URL: "https://internship.dawoodtechnextgen.org/api",
+  // BASE_URL: "http://localhost:8890/api",
 
   ENDPOINTS: {
     TECHNOLOGIES: "/technologies",
