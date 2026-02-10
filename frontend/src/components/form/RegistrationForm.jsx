@@ -734,29 +734,29 @@ const RegistrationForm = () => {
                         </strong>
                       </p>
                       <ul className="text-sm text-blue-700 dark:text-blue-400 space-y-1">
-                        <li>✅ Mentor Support & Guidance</li>
-                        <li>✅ Verified Internship Certificate</li>
                         <li>✅ Real-World Projects</li>
                         <li>✅ Portfolio & GitHub Setup</li>
+                        <li>✅ Mentor Support & Guidance</li>
                         <li>✅ Job & Freelancing Guidance</li>
+                        <li>✅ Verified Internship Certificate</li>
                         <li>✅ Top Performers get Recommendation Letter</li>
                       </ul>
                     </div>
                   )}
-                  {formData.internshipType === "Learning Internship (Free)" && (
+                  {formData.internshipType === "Internship Access Program" && (
                     <div className="mt-2 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
                       <p className="text-sm font-medium text-blue-800 dark:text-blue-300 mb-2">
-                        <strong>Learning Internship (Free) Includes:</strong>
+                        <strong>Internship Access Program Includes:</strong>
                       </p>
                       <ul className="text-sm text-blue-700 dark:text-blue-400 space-y-1">
-                        <li>✅ 4 Weeks Internship Program</li>
-                        <li>✅ Basic Training & Learning Modules</li>
+                        <li>✅ Basic Guidance</li>
+                        <li>✅ Practice-based Tasks</li>
+                        <li>✅ Platform Fee: PKR 500</li>
                         <li>✅ Beginner-Level Projects</li>
-                        <li>
-                          ✅ Participation Letter (No Professional Certificate)
-                        </li>
-                        <li>✅ Community Support & Group Guidance</li>
                         <li>✅ Weekly Tasks & Progress Review</li>
+                        <li>✅ Completion Certificate for 4 Weeks</li>
+                        <li>✅ Community Support & Group Guidance</li>
+                        <li>✅ 4-weeks Internship Access & Onboarding</li>
                       </ul>
                     </div>
                   )}

@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
-import {
-  ChevronDown,
-  Search,
-  CheckCircle,
-  Loader2,
-} from "lucide-react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
+import { ChevronDown, Search, CheckCircle, Loader2 } from "lucide-react";
 
 const CustomSelect = ({
   label,
@@ -41,13 +42,16 @@ const CustomSelect = ({
     return option.value || option.id || option;
   }, []);
 
-  const isOptionSelected = useCallback((option) => {
-    if (!value) return false;
-    const optionValue = getOptionValue(option);
-    const currentValue =
-      typeof value === "object" ? getOptionValue(value) : value;
-    return optionValue === currentValue;
-  }, [value, getOptionValue]);
+  const isOptionSelected = useCallback(
+    (option) => {
+      if (!value) return false;
+      const optionValue = getOptionValue(option);
+      const currentValue =
+        typeof value === "object" ? getOptionValue(value) : value;
+      return optionValue === currentValue;
+    },
+    [value, getOptionValue],
+  );
 
   const filteredOptions = useMemo(() => {
     if (searchable && searchTerm) {
@@ -181,9 +185,10 @@ const CustomSelect = ({
                       onClick={() => !disabled && handleSelect(option)}
                       disabled={disabled}
                       className={`w-full px-4 py-3 text-left transition-colors duration-150 flex items-center 
-                        ${disabled 
-                          ? "text-slate-400 dark:text-slate-500 cursor-not-allowed bg-slate-50 dark:bg-slate-800/50" 
-                          : "hover:bg-slate-50 dark:hover:bg-slate-700/50"
+                        ${
+                          disabled
+                            ? "text-slate-400 dark:text-slate-500 cursor-not-allowed bg-slate-50 dark:bg-slate-800/50"
+                            : "hover:bg-slate-50 dark:hover:bg-slate-700/50"
                         }
                         ${selected ? "bg-blue-50 dark:bg-blue-900/20" : ""}
                       `}
