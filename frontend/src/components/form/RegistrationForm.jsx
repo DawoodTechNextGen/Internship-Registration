@@ -751,7 +751,6 @@ const RegistrationForm = () => {
                       <ul className="text-sm text-blue-700 dark:text-blue-400 space-y-1">
                         <li>✅ Basic Guidance</li>
                         <li>✅ Practice-based Tasks</li>
-                        <li>✅ Platform Fee: PKR 500</li>
                         <li>✅ Beginner-Level Projects</li>
                         <li>✅ Weekly Tasks & Progress Review</li>
                         <li>✅ Completion Certificate for 4 Weeks</li>
