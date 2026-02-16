@@ -1,9 +1,12 @@
 const internshipTypes = [
   { value: "", label: "Select Internship Type", disabled: true },
-  { value: "Internship Access Program", label: "Internship Access Program" },
   {
-    value: "Certification Internship (Paid)",
-    label: "Certification Internship (Paid)",
+    value: "Internship Access Program (Free)",
+    label: "Internship Access Program (Free)",
+  },
+  {
+    value: "Certification Internship (Fees)",
+    label: "Certification Internship (Fees)",
   },
 ];
 

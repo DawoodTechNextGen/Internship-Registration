@@ -726,11 +726,11 @@ const RegistrationForm = () => {
                     error={errors.experience || serverErrors.experience}
                   />
                   {formData.internshipType ===
-                    "Certification Internship (Paid)" && (
+                    "Certification Internship (Fees)" && (
                     <div className="mt-2 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
                       <p className="text-sm font-medium text-blue-800 dark:text-blue-300 mb-2">
                         <strong>
-                          Certification Internship (Paid) Includes:
+                          Certification Internship (Fees) Includes:
                         </strong>
                       </p>
                       <ul className="text-sm text-blue-700 dark:text-blue-400 space-y-1">
@@ -743,14 +743,15 @@ const RegistrationForm = () => {
                       </ul>
                     </div>
                   )}
-                  {formData.internshipType === "Internship Access Program" && (
+                  {formData.internshipType === "Internship Access Program (Free)" && (
                     <div className="mt-2 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
                       <p className="text-sm font-medium text-blue-800 dark:text-blue-300 mb-2">
-                        <strong>Internship Access Program Includes:</strong>
+                        <strong>Internship Access Program (Free) Includes:</strong>
                       </p>
                       <ul className="text-sm text-blue-700 dark:text-blue-400 space-y-1">
                         <li>✅ Basic Guidance</li>
                         <li>✅ Practice-based Tasks</li>
+                        <li>✅ Platform Fee: PKR 500</li>
                         <li>✅ Beginner-Level Projects</li>
                         <li>✅ Weekly Tasks & Progress Review</li>
                         <li>✅ Completion Certificate for 4 Weeks</li>
