@@ -10,10 +10,12 @@ const useTechnologies = () => {
     } else {
       mappedError = error.message || "Failed to load technologies. Please try again.";
     }
+  } else if (data && !Array.isArray(data)) {
+    mappedError = data.error || data.message || "Failed to load technologies. Unexpected API response format.";
   }
 
   return {
-    technologies: data || [],
+    technologies: Array.isArray(data) ? data : [],
     loading: isLoading,
     error: mappedError,
     retryFetch: refetch,

@@ -54,14 +54,15 @@ const CustomSelect = ({
   );
 
   const filteredOptions = useMemo(() => {
+    const safeOptions = Array.isArray(options) ? options : [];
     if (searchable && searchTerm) {
-      const filtered = options.filter((option) => {
+      const filtered = safeOptions.filter((option) => {
         const optionText = getOptionText(option);
         return optionText.toLowerCase().includes(searchTerm.toLowerCase());
       });
       return filtered;
     } else {
-      return options;
+      return safeOptions;
     }
   }, [searchTerm, options, searchable, getOptionText]);
 
@@ -79,15 +80,16 @@ const CustomSelect = ({
   const getSelectedOption = () => {
     if (!value) return null;
 
+    const safeOptions = Array.isArray(options) ? options : [];
     // If value is a string, find matching option
     if (typeof value === "string") {
-      return options.find((option) => getOptionValue(option) === value);
+      return safeOptions.find((option) => getOptionValue(option) === value);
     }
 
     // If value is an object, check if it exists in options
     const valueKey = getOptionValue(value);
     return (
-      options.find((option) => getOptionValue(option) === valueKey) || value
+      safeOptions.find((option) => getOptionValue(option) === valueKey) || value
     );
   };
 

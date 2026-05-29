@@ -1,7 +1,8 @@
 const mysql = require("mysql");
 require("dotenv").config();
 
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
+  connectionLimit: 10,
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
@@ -9,12 +10,13 @@ const connection = mysql.createConnection({
 });
 
 async function createDbConnection() {
-  connection.connect((err) => {
+  connection.getConnection((err, conn) => {
     if (err) {
-      console.error("Error connecting to MYSQL: ", err);
+      console.error("Error connecting to MYSQL pool: ", err);
       return;
     }
-    console.log("Database Connected Successfuly");
+    console.log("Database Connected Successfully to Pool");
+    conn.release();
   });
 }
 

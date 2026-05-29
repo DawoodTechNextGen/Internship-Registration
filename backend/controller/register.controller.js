@@ -60,7 +60,10 @@ const getRegistrationCount = async (req, res) => {
   const sql = "SELECT COUNT(*) as total FROM registrations";
 
   connection.query(sql, (err, data) => {
-    if (err) return err;
+    if (err) {
+      console.error("Database query error in getRegistrationCount:", err);
+      return res.status(500).json({ error: "Failed to get registration count" });
+    }
     return res.json(data[0].total);
   });
 };
