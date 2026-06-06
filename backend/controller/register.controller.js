@@ -59,6 +59,11 @@ const registerIntern = (req, res) => {
 const getRegistrationCount = async (req, res) => {
   const sql = "SELECT COUNT(*) as total FROM registrations";
 
+  // Prevent browser/CDN caching of registration count
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+  res.setHeader("Pragma", "no-cache");
+  res.setHeader("Expires", "0");
+
   connection.query(sql, (err, data) => {
     if (err) {
       console.error("Database query error in getRegistrationCount:", err);
