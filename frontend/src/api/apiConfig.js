@@ -5,7 +5,8 @@ const ENDPOINTS = {
     SUBMIT_FORM: "/api/registration",
     GET_TECHNOLOGIES: "/api/technologies",
     COUNT_REG: "/api/count-register",
+    SUBMIT_BOOTCAMP_FORM: "/api/bootcamp-registration",
+    COUNT_BOOTCAMP: "/api/count-bootcamp",
 };
 
 export { API_BASE_URL, ENDPOINTS };
-

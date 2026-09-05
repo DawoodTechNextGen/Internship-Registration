@@ -4,8 +4,10 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const { createDbConnection, connection } = require("./config/connection");
+const { initDb } = require("./config/initDb");
 const registerRouter = require("./routes/register.route");
 const techRouter = require("./routes/tech.route");
+const bootcampRouter = require("./routes/bootcamp.route");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -18,9 +20,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Database Connection
 createDbConnection();
 
+// Create any missing tables from the .sql files in /sql
+initDb();
+
 // Routes
 app.use(registerRouter);
 app.use(techRouter);
+app.use(bootcampRouter);
 
 // Health Check Route
 app.get("/", (req, res) => {

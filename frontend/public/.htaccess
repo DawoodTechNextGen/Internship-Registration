@@ -1,0 +1,15 @@
+# SPA fallback for the React build.
+# Rules are relative to the folder this file sits in, so it works whether the
+# app is deployed at the domain root or inside a subfolder.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Real files and folders (assets, images, favicon) are served as-is
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else is handled by React Router
+  RewriteRule ^ index.html [L]
+</IfModule>

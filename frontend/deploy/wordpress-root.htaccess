@@ -1,0 +1,18 @@
+# ---------------------------------------------------------------------------
+# Yeh POORI file upload nahi karni. Sirf neeche wala block copy kar ke
+# WordPress ki root .htaccess mein "# BEGIN WordPress" se PEHLE paste karein.
+#
+# Kyun: WordPress har unknown URL ko index.php par bhej deta hai. React app
+# /internship-registration folder mein hai (wo real folder hai, is liye khud
+# chal jata hai), lekin /bootcamp koi real folder nahi — is liye usay hum
+# app ki index.html par bhejte hain. React Router phir bootcamp page dikha
+# deta hai. Assets /internship-registration/assets/ se load hote hain.
+# ---------------------------------------------------------------------------
+
+# BEGIN Bootcamp SPA route
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^bootcamp/?$ /internship-registration/index.html [L]
+</IfModule>
+# END Bootcamp SPA route
