@@ -8,12 +8,32 @@ const { initDb } = require("./config/initDb");
 const registerRouter = require("./routes/register.route");
 const techRouter = require("./routes/tech.route");
 const bootcampRouter = require("./routes/bootcamp.route");
+const hackathonRouter = require("./routes/hackathon.route");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Allowed browser origins. Set Allow_ORIGIN in .env as a comma separated list,
+// or "*" to allow every origin (development only).
+const DEFAULT_ORIGINS = [
+  "https://dawoodtechnextgen.com",
+  "https://www.dawoodtechnextgen.com",
+];
+const configuredOrigin = (process.env.Allow_ORIGIN || "").trim();
+const corsOptions =
+  configuredOrigin === "*"
+    ? { origin: "*" }
+    : {
+        origin: configuredOrigin
+          ? configuredOrigin
+              .split(",")
+              .map((origin) => origin.trim())
+              .filter(Boolean)
+          : DEFAULT_ORIGINS,
+      };
+
 // Middleware
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -27,6 +47,7 @@ initDb();
 app.use(registerRouter);
 app.use(techRouter);
 app.use(bootcampRouter);
+app.use(hackathonRouter);
 
 // Health Check Route
 app.get("/", (req, res) => {
