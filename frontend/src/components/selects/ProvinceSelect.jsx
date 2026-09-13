@@ -8,7 +8,7 @@ const ProvinceSelect = ({ value, onChange, error }) => {
   const currentValue = value || provinces[0];
 
   const renderSelectedProvince = (province) => (
-    <div className="font-medium text-slate-900 dark:text-slate-100 truncate">
+    <div className="font-medium text-white truncate">
       {province?.label || province || "Select Province"}
     </div>
   );

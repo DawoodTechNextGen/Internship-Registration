@@ -10,7 +10,7 @@ const ExperienceSelect = ({ value, onChange, error }) => {
   };
 
   const renderSelectedExperience = (exp) => (
-    <div className="font-medium text-slate-900 dark:text-slate-100 truncate">
+    <div className="font-medium text-white truncate">
       {exp ? exp.label : "Select Experience"}
     </div>
   );
@@ -18,12 +18,12 @@ const ExperienceSelect = ({ value, onChange, error }) => {
   const renderExperienceOption = (exp, selected) => (
     <>
       <div className="flex-1 min-w-0">
-        <div className="font-medium text-slate-900 dark:text-slate-100 truncate">
+        <div className="font-medium text-white truncate">
           {exp.label}
         </div>
       </div>
       {selected && (
-        <CheckCircle className="w-5 h-5 text-blue-500 dark:text-blue-400 ml-2 flex-shrink-0" />
+        <CheckCircle className="w-5 h-5 text-blue-400 ml-2 flex-shrink-0" />
       )}
     </>
   );

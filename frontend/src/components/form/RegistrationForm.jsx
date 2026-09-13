@@ -25,6 +25,7 @@ import InternshipTypeSelect from "../selects/InternshipTypeSelect";
 import ExperienceSelect from "../selects/ExperienceSelect";
 import ServerErrorsDisplay from "../common/ServerErrorsDisplay";
 import AnimatedRegistrationCounter from "../common/AnimatedRegistrationCounter";
+import TechBackground from "../hackathon/TechBackground";
 
 const RegistrationForm = () => {
   const { technologies, loading, error, retryFetch } = useTechnologies();
@@ -481,29 +482,26 @@ const RegistrationForm = () => {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 px-4">
-        <div className="text-center max-w-md mx-auto">
+      <div className="relative min-h-screen flex items-center justify-center bg-slate-950 overflow-hidden px-4">
+        <TechBackground />
+        <div className="relative text-center max-w-md mx-auto">
           <div className="relative mb-8">
-            <div className="w-24 h-24 mx-auto bg-gradient-to-r from-green-700 to-emerald-800 rounded-2xl flex items-center justify-center shadow-lg shadow-emerald-500/25">
+            <div className="w-24 h-24 mx-auto bg-gradient-to-br from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/25">
               <CheckCircle className="w-12 h-12 text-white" />
-            </div>
-            <div className="absolute -top-2 right-40">
-              <div className="absolute -inset-4 rounded-full bg-green-400/30 animate-ripple-1"></div>
-              <div className="absolute -inset-4 rounded-full bg-green-400/20 animate-ripple-2"></div>
             </div>
           </div>
 
           <div className="space-y-4 mb-8">
             <div className="space-y-2">
-              <h1 className="text-4xl font-black bg-gradient-to-r from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+              <h1 className="text-4xl font-black bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
                 Registration Complete!
               </h1>
-              <h2 className="text-xl font-bold text-slate-800 dark:text-slate-200">
+              <h2 className="text-xl font-bold text-white">
                 Thank you for registering
               </h2>
             </div>
 
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+            <p className="text-slate-400 leading-relaxed">
               We'll contact you on WhatsApp within 24 hours with next steps.
             </p>
           </div>
@@ -555,19 +553,17 @@ const RegistrationForm = () => {
         }}
       />
 
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 px-4 py-8">
-        <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500 dark:bg-blue-700 rounded-full blur-xl opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-10 right-10 w-16 h-16 bg-pink-500 dark:bg-pink-700 rounded-full blur-xl opacity-30 animate-pulse delay-1000"></div>
-        <div className="absolute top-1/3 right-1/4 w-12 h-12 bg-purple-500 dark:bg-purple-700 rounded-full blur-xl opacity-20 animate-pulse delay-500"></div>
+      <div className="relative min-h-screen flex items-center justify-center bg-slate-950 overflow-hidden px-4 py-8">
+        <TechBackground />
 
-        <div className="w-full max-w-4xl">
+        <div className="relative w-full max-w-4xl">
           <div className="text-center mb-8 max-w-xl mx-auto">
-            <h1 className="text-4xl font-black bg-gradient-to-r from-slate-800 to-slate-600 dark:from-slate-200 dark:to-slate-400 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-black bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
               Internship Registration DawoodTech NextGen Pakistan
             </h1>
           </div>
 
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl shadow-slate-200/50 dark:shadow-slate-900/50 overflow-hidden border border-slate-200 dark:border-slate-700">
+          <div className="rounded-2xl bg-slate-900/90 border border-slate-700/60 shadow-2xl shadow-blue-500/5 overflow-hidden">
             <div className="p-8">
               <ServerErrorsDisplay errors={serverErrors} />
 
@@ -605,25 +601,25 @@ const RegistrationForm = () => {
 
                   {/* WhatsApp */}
                   <div className="space-y-1.5">
-                    <label className="flex items-center text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
-                      <Phone className="w-4 h-4 mr-2 text-slate-500" />
+                    <label className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-400">
+                      <Phone className="w-3.5 h-3.5 text-blue-400" />
                       WhatsApp Number *
                     </label>
                     <div className="flex">
                       {selectedCountry && (
                         <div
-                          className={`flex items-center px-3 border border-r-0 rounded-l-xl bg-slate-50 dark:bg-slate-700
+                          className={`flex items-center px-3 border border-r-0 rounded-l-xl bg-slate-800/80
                           ${
                             errors.whatsapp || serverErrors.whatsapp
-                              ? "border-red-300 dark:border-red-700"
-                              : "border-slate-300 dark:border-slate-600"
+                              ? "border-red-500/60"
+                              : "border-slate-700"
                           }
                         `}
                         >
-                          <span className="text-lg mr-2 text-gray-300">
+                          <span className="text-lg mr-2">
                             {getFlagEmoji(selectedCountry.code)}
                           </span>
-                          <span className="font-medium text-slate-700 dark:text-slate-300">
+                          <span className="font-medium text-slate-300">
                             {selectedCountry.phoneCode}
                           </span>
                         </div>
@@ -639,23 +635,23 @@ const RegistrationForm = () => {
                             ? "Enter your number"
                             : "Select country first"
                         }
-                        className={`flex-1 px-4 py-3 border rounded-xl focus:outline-none transition-all duration-200
+                        className={`flex-1 px-4 py-3 border rounded-xl bg-slate-800/60 placeholder-slate-500 focus:outline-none transition-colors duration-200
                           ${
                             errors.whatsapp || serverErrors.whatsapp
-                              ? "border-red-300 dark:border-red-700 focus:border-red-500 focus:ring-2 focus:ring-red-100 dark:focus:ring-red-900"
-                              : "border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500 focus:border-blue-500 dark:focus:border-blue-400 focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900"
+                              ? "border-red-500/60 focus:border-red-500"
+                              : "border-slate-700 hover:border-slate-600 focus:border-blue-500"
                           }
                           ${selectedCountry ? "rounded-l-none" : ""}
                           ${
                             !selectedCountry
-                              ? "bg-slate-50 dark:bg-slate-700 text-slate-400 dark:text-slate-500 cursor-not-allowed"
-                              : "text-slate-900 dark:text-slate-100"
+                              ? "text-slate-500 cursor-not-allowed"
+                              : "text-white"
                           }
                         `}
                       />
                     </div>
                     {(errors.whatsapp || serverErrors.whatsapp) && (
-                      <p className="text-red-500 dark:text-red-400 text-xs mt-1 animate-fadeIn">
+                      <p className="text-red-400 text-xs mt-1 animate-fadeIn">
                         {errors.whatsapp || serverErrors.whatsapp}
                       </p>
                     )}
@@ -717,11 +713,11 @@ const RegistrationForm = () => {
                     error={errors.experience || serverErrors.experience}
                   />
                   {formData.internshipType === "Learning-Based Internship" && (
-                    <div className="mt-2 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-                      <p className="text-sm font-medium text-blue-800 dark:text-blue-300 mb-2">
+                    <div className="mt-2 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                      <p className="text-sm font-medium text-blue-300 mb-2">
                         <strong>Learning-Based Internship Includes:</strong>
                       </p>
-                      <ul className="text-sm text-blue-700 dark:text-blue-400 space-y-1">
+                      <ul className="text-sm text-blue-400 space-y-1">
                         <li>✅ Structured Learning-Based Program</li>
                         <li>✅ Affordable Learning & Training Fee</li>
                         <li>✅ Real-World Projects</li>
@@ -734,11 +730,11 @@ const RegistrationForm = () => {
                     </div>
                   )}
                   {formData.internshipType === "Task-Based Internship" && (
-                    <div className="mt-2 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
-                      <p className="text-sm font-medium text-blue-800 dark:text-blue-300 mb-2">
+                    <div className="mt-2 p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                      <p className="text-sm font-medium text-blue-300 mb-2">
                         <strong>Task-Based Internship Includes:</strong>
                       </p>
-                      <ul className="text-sm text-blue-700 dark:text-blue-400 space-y-1">
+                      <ul className="text-sm text-blue-400 space-y-1">
                         <li>✅ Beginner-Friendly Learning Program</li>
                         <li>✅ Practice-Based Tasks & Assignments</li>
                         <li>✅ Platform & Training Fee: PKR 1000</li>
@@ -788,7 +784,7 @@ const RegistrationForm = () => {
                   </button>
 
                   {/* Security Note */}
-                  <div className="flex items-center justify-center pt-4 border-t border-slate-200 dark:border-slate-700 mt-5">
+                  <div className="flex items-center justify-center pt-4 border-t border-slate-700/60 mt-5">
                     <div className="relative flex items-center justify-center">
                       <AnimatedRegistrationCounter />
                     </div>
@@ -796,9 +792,9 @@ const RegistrationForm = () => {
                 </div>
 
                 {/* Security Note */}
-                <div className="flex items-center justify-center pt-4 border-t border-slate-200 dark:border-slate-700">
-                  <Shield className="w-4 h-4 text-blue-500 dark:text-blue-400 mr-2" />
-                  <p className="text-xs text-slate-600 dark:text-slate-400">
+                <div className="flex items-center justify-center pt-4 border-t border-slate-700/60">
+                  <Shield className="w-4 h-4 text-blue-400 mr-2" />
+                  <p className="text-xs text-slate-400 font-mono">
                     Your information is secure and will only be used for
                     internship coordination
                   </p>

@@ -7,6 +7,9 @@ const ENDPOINTS = {
     COUNT_REG: "/api/count-register",
     SUBMIT_BOOTCAMP_FORM: "/api/bootcamp-registration",
     COUNT_BOOTCAMP: "/api/count-bootcamp",
+    HACKATHONS: "/api/hackathons",
+    SUBMIT_HACKATHON_REGISTRATION: "/api/hackathon-registration",
+    COUNT_HACKATHON: "/api/count-hackathon",
 };
 
 export { API_BASE_URL, ENDPOINTS };

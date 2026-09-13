@@ -1,29 +1,26 @@
 import { useEffect, useRef, useState } from "react";
-import { useGetRegistrationCountQuery } from "../../api/apiSlice.js";
+import { useGetHackathonCountQuery } from "../../api/apiSlice.js";
 import formatCount from "../../utils/formatCount.js";
 
-const AnimatedRegistrationCounter = () => {
+const HackathonParticipantCounter = ({ hackathonId }) => {
   const [display, setDisplay] = useState("0");
   const current = useRef("0");
   const digitRefs = useRef([]);
 
-  const { data } = useGetRegistrationCountQuery(undefined, {
+  const { data } = useGetHackathonCountQuery(hackathonId, {
+    skip: !hackathonId,
     pollingInterval: 20000,
     refetchOnMountOrArgChange: true,
   });
 
   useEffect(() => {
     if (data !== undefined && data !== null) {
-      console.log("Count update from RTK:", data);
       const count = Number(data.count || data);
       if (!isNaN(count)) {
         const formatted = formatCount(count);
         if (formatted !== current.current) {
           setDisplay(formatted);
         }
-      } else {
-        console.error("Invalid count data:", data);
-        setDisplay("0");
       }
     }
   }, [data]);
@@ -41,15 +38,13 @@ const AnimatedRegistrationCounter = () => {
       if (isNaN(parseInt(char))) continue;
 
       const targetDigit = parseInt(char);
-      const direction = Math.random() > 0.5 ? 1 : -1; // 1 for bottom to up, -1 for top to bottom
+      const direction = Math.random() > 0.5 ? 1 : -1;
       const endTranslate = -targetDigit * digitHeight;
 
-      // Calculate start position for settle
       const settleStartElapsed = 0.9 * totalDuration;
       let startSettle;
       if (direction === 1) {
-        startSettle =
-          -216 + ((settleStartElapsed % cycleTime) / cycleTime) * 216;
+        startSettle = -216 + ((settleStartElapsed % cycleTime) / cycleTime) * 216;
       } else {
         startSettle = 0 - ((settleStartElapsed % cycleTime) / cycleTime) * 216;
       }
@@ -62,17 +57,14 @@ const AnimatedRegistrationCounter = () => {
 
         let currentTranslate;
         if (progress < 0.9) {
-          // Shuffle phase
           if (direction === 1) {
             currentTranslate = -216 + ((elapsed % cycleTime) / cycleTime) * 216;
           } else {
             currentTranslate = 0 - ((elapsed % cycleTime) / cycleTime) * 216;
           }
         } else {
-          // Settle phase
           const settleProgress = (progress - 0.9) / 0.1;
-          currentTranslate =
-            startSettle + (endTranslate - startSettle) * settleProgress;
+          currentTranslate = startSettle + (endTranslate - startSettle) * settleProgress;
         }
 
         ref.style.transform = `translateY(${currentTranslate}px)`;
@@ -89,8 +81,7 @@ const AnimatedRegistrationCounter = () => {
   }, [display]);
 
   return (
-    <div className="text-center mb-8 flex flex-col items-center justify-center">
-      {/* Dynamic counter with tight spacing and baseline alignment */}
+    <div className="text-center flex flex-col items-center justify-center">
       <div className="text-2xl md:text-2xl font-black text-white tabular-nums tracking-tight flex items-center justify-center mb-2">
         {display.split("").map((char, index) => {
           const isDigit = !isNaN(parseInt(char));
@@ -106,10 +97,7 @@ const AnimatedRegistrationCounter = () => {
                   style={{ transform: `translateY(0px)` }}
                 >
                   {Array.from({ length: 10 }, (_, i) => (
-                    <div
-                      key={i}
-                      className="h-8 flex items-end justify-center leading-none"
-                    >
+                    <div key={i} className="h-8 flex items-end justify-center leading-none">
                       {i}
                     </div>
                   ))}
@@ -117,7 +105,6 @@ const AnimatedRegistrationCounter = () => {
               </div>
             );
           } else {
-            // Render non-digits (like '.', 'k', 'M') with matching height and baseline alignment
             digitRefs.current[index] = null;
             const widthClass = char === "." ? "w-1.5" : "w-3.5";
             return (
@@ -134,16 +121,13 @@ const AnimatedRegistrationCounter = () => {
         })}
       </div>
 
-      {/* Engaging sub-message with urgency and dynamic counts */}
       <div className="text-xs sm:text-sm md:text-base font-mono font-semibold tracking-wide text-slate-400 flex items-center justify-center gap-1.5 select-none">
-        <span className="inline-block animate-bounce text-base">🔥</span>
-        <span>
-          {display}+ Candidates Applied. Limited Slots Left! Apply Now!
-        </span>
-        <span className="inline-block animate-bounce text-base">🔥</span>
+        <span className="inline-block animate-bounce text-base">🚀</span>
+        <span>{display}+ Innovators Registered. Join the Challenge!</span>
+        <span className="inline-block animate-bounce text-base">🚀</span>
       </div>
     </div>
   );
 };
 
-export default AnimatedRegistrationCounter;
+export default HackathonParticipantCounter;

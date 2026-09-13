@@ -8,7 +8,7 @@ const InternshipTypeSelect = ({ value, onChange, error }) => {
   const currentValue = value || internshipTypes[0];
 
   const renderSelectedType = (type) => (
-    <div className="font-medium text-slate-900 dark:text-slate-100 truncate">
+    <div className="font-medium text-white truncate">
       {type?.label || type || "Select Type"}
     </div>
   );
